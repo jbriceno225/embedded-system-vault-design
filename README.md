@@ -6,6 +6,13 @@ Conceptual embedded system design for a secure vault using RFID authentication, 
 ## Overview
 This project presents the design of an embedded system built around the MSP430FR5994 microcontroller. The system integrates multiple communication protocols and peripherals to implement a secure access control mechanism.
 
+
+## System Diagram
+<img src="media/embedded-system-block-diagram.png" width="500"/>
+
+Block diagram showing integration of RFID authentication, LCD interface (I2C), and servo control (PWM) on the MSP430 platform.
+
+
 ## System Design
 
 The system consists of three main subsystems:
