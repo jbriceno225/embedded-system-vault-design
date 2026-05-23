@@ -1,45 +1,55 @@
-# Embedded System Vault Design (MSP430)
+# Embedded System Vault Design — MSP430
 
-Conceptual embedded system design for a secure vault using RFID authentication, LCD user feedback, and servo-based actuation.
+Conceptual embedded system architecture for a secure vault using **RFID authentication**, **LCD user feedback**, and **PWM servo actuation** on an MSP430 microcontroller platform.
 
+<img src="media/embedded_system_block_diagram.png" width="550"/>
 
-## Overview
-This project presents the design of an embedded system built around the MSP430FR5994 microcontroller. The system integrates multiple communication protocols and peripherals to implement a secure access control mechanism.
+## Project Summary
+This project presents the design of an access-control embedded system built around the MSP430FR5994. The system integrates multiple communication protocols and peripherals to authenticate a user, provide LCD feedback, and actuate a servo-based lock mechanism.
 
+## System Architecture
 
-## System Diagram
-<img src="media/embedded_system_block_diagram.png" width="500"/>
+| Subsystem | Component | Interface | Purpose |
+|---|---|---|---|
+| Authentication | RFID-RC522 | SPI | Reads and validates RFID tags |
+| User Interface | LCD display | I2C | Displays access status and user feedback |
+| Actuation | Servo motor | PWM | Controls lock/unlock mechanism |
+| Controller | MSP430FR5994 | GPIO/peripherals | Coordinates system logic |
 
-Block diagram showing integration of RFID authentication, LCD interface (I2C), and servo control (PWM) on the MSP430 platform.
-
-
-## System Design
-
-The system consists of three main subsystems:
-
-- **Authentication:** RFID-RC522 module (SPI communication)
-- **User Interface:** I2C LCD display for feedback
-- **Actuation:** Servo motor controlled via PWM for locking/unlocking
-
-When a valid RFID tag is detected, the system displays user information and actuates the servo to unlock the vault. Invalid tags result in access denial and no actuation.
-
+## System Behavior
+1. System waits for RFID tag input.
+2. RFID module sends tag data to the MSP430 over SPI.
+3. Control logic compares the tag against authorized credentials.
+4. LCD displays access granted or denied.
+5. Servo actuates the locking mechanism only when access is approved.
 
 ## Architecture Highlights
-- SPI communication for RFID module  
-- I2C communication for LCD interface  
-- PWM control for servo actuation  
-- Embedded control logic implemented on MSP430  
+- SPI communication for RFID authentication
+- I2C communication for LCD status feedback
+- PWM servo control for lock actuation
+- Modular embedded control logic
+- Clear separation between input, processing, feedback, and actuation
 
 ## My Contributions
-- Designed system architecture and component integration  
-- Defined communication interfaces (SPI, I2C, PWM)  
-- Developed control logic for authentication and actuation  
-- Created system-level block diagram and design documentation  
+- Designed the embedded system architecture and component integration plan.
+- Defined communication interfaces across RFID, LCD, and servo subsystems.
+- Developed control-flow logic for authentication and actuation behavior.
+- Created system-level block diagram and technical documentation.
+
+## Project Type
+This repository documents a **conceptual embedded system design**. The focus is system architecture, peripheral integration, interface planning, and control logic rather than a fully built hardware implementation.
+
+## Repository Structure
+```text
+docs/    embedded system report
+media/   system block diagram
+```
 
 ## Documentation
-[View Full Report](docs/embedded-system-report.pdf)
+- [Full Report](docs/embedded-system-report.pdf)
 
-Includes detailed system architecture, communication protocols, and embedded system design considerations.
-
-## Note
-This project focuses on system design and architecture rather than full hardware implementation.
+## Future Improvements
+- Add MSP430 firmware implementation.
+- Add pin mapping table and wiring diagram.
+- Add test plan for RFID validation, LCD output, and servo response.
+- Build a prototype enclosure and demonstrate the full access-control sequence.
